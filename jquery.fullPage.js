@@ -35,6 +35,11 @@
 			'scrollOverflow': false,
 			'touchSensitivity': 5,
 			'normalScrollElementTouchThreshold': 5,
+      
+      //Defines the delay to take place before being able to scroll to the next section
+      //BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
+      //Apple devices (laptops, mouses...)
+      'scrollDelay' : 600,
 
 			//Accessibility
 			'keyboardScrolling': true,
@@ -67,15 +72,10 @@
 			'onSlideLeave': null
 		}, options);
 
-	    displayWarnings();
+    displayWarnings();
 
-	    //easeInQuart animation included in the plugin
-	    $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
-
-		//Defines the delay to take place before being able to scroll to the next section
-		//BE CAREFUL! Not recommened to change it under 400 for a good behavior in laptops and
-		//Apple devices (laptops, mouses...)
-		var scrollDelay = 600;
+    //easeInQuart animation included in the plugin
+    $.extend($.easing,{ easeInQuart: function (x, t, b, c, d) { return c*(t/=d)*t*t*t + b; }});
 
 		$.fn.fullpage.setAutoScrolling = function(value, type){
 			setVariableState('autoScrolling', value, type);
@@ -1033,7 +1033,7 @@
 			setTimeout(function () {
 				isMoving = false;
 				$.isFunction(v.callback) && v.callback.call(this);
-			}, scrollDelay);
+			}, options.scrollDelay);
 		}
 
 
